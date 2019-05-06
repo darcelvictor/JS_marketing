@@ -1,0 +1,169 @@
+/* 
+Reset
+*/
+    :root {
+        --brand-color: grey;
+    }
+
+    *{
+        margin: 0;
+        padding: 0;
+
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    html{
+        font-size: 62.5%;
+        font-family: sans-serif;
+        font-weight: 100;
+        line-height: 1.5;
+    }
+
+    body{
+        font-size: 1.6rem;
+    }
+
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+
+    ul {
+        font-size: 1.2rem;
+        max-height: 20rem;
+        overflow: auto;
+    }
+
+    h1 {
+        margin-bottom: 0;
+        color: #9b4dca;
+    }
+
+    h1 + p {
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: black;
+        margin: auto;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        background: #9b4dca;
+        letter-spacing: .1rem;
+        color: white;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: .5rem;
+    }
+/**/
+
+/* 
+Common
+*/
+    .maxWidth{
+        max-width: 70rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    .flexBox{
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+    }
+
+    .flexColumn{
+        -webkit-flex-direction: column;
+        -moz-flex-direction: column;
+        -ms-flex-direction: column;
+        -o-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .spaceBetween{
+        -webkit-justify-content: space-between;
+        -moz-justify-content: space-between;
+        -ms-justify-content: space-between;
+        -o-justify-content: space-between;
+        justify-content: space-between;
+    }
+/**/
+
+/* 
+Home page
+*/
+    .home main{
+        height: 100vh;
+    }
+
+    .home section{
+        background-color: var(--brand-color);
+        width: 15rem;
+        height: 15rem;
+        margin: auto;
+
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        border-radius: 50%;
+        box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, .2);
+    }
+
+    .home h1{
+        text-align: center;
+        color: white;
+        margin: auto;
+    }
+/**/
+
+/* 
+Result page
+*/  
+    header.maxWidth {
+        text-align: center;
+        border: .1rem solid #9b4dca;
+        margin-top: -.1rem;
+        margin-bottom: 4rem;
+        max-width: 50rem;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        padding: 2rem;
+    }
+
+    .hidden{
+        display: none;
+    }
+    .correction input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .correction button {
+        border-radius: 0;
+        border-top-right-radius: .5rem;
+        border-bottom-right-radius: .5rem;
+    }
+
+    #interestByRegionCollection {
+        background: rgba(155, 77, 202, .1);
+        padding: 3rem;
+        border-radius: 2rem;
+        border: .1rem solid #9b4dca;
+        margin-bottom: 5rem;
+    }
+
+    #interestByRegionCollection canvas{
+        max-width: 100%;
+    }
+/**/

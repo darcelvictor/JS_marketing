@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>GoogleTrend API aggregator</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"> 
+        <link rel="stylesheet" href="https://cdn.rawgit.com/necolas/normalize.css/master/normalize.css"> 
+        <link rel="stylesheet" href="https://cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+        <link rel="stylesheet" href="./css/main.css">
+    </head>
+    <body class="correction">
+        <header class="maxWidth">
+            <h1>The GoogleTrend API</h1>
+            <p>Application to aggregate trend informations from Google for any keyworks</p>
+        </header>
+
+        <main class="maxWidth">
+            <section id="searchBox">
+                <h2>Type your keyword(s) to start fetching data</h2>
+                <form action="#" class="flexBox spaceBetween" id="searchForm">
+                    <input type="text" name="keyworks" id="keyworks" minlength="2" required>
+                    <button type="submit">OK</button>
+                </form>
+            </section>
+
+            <div class="hidden">
+                <section id="interestByRegionCollection">
+                    <h2 id="searchTitle">test</h2>
+                </section>
+
+                <section class="flexBox spaceBetween" >
+                    <article id="relatedQueriesCollection">
+                        <h2>Associated queries</h2>
+                        <ul></ul>
+                    </article>
+
+                    <article id="relatedTopicsCollection">
+                        <h2>Associated topics</h2>
+                        <ul></ul>
+                    </article>
+                </section>
+            </div>
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+        <script>            
+            /*
+            Function to get form submission
+            Edit this function to get the form submission
+            - Make a const/let for the form and the textarea
+            - Listen the correct event on the form to bind submission
+            - Check if the textarea value isn't empty
+            - Call the fetch function like this:
+              asyncFetch('https://trends.dwsapp.io/api/google-trends/aggregate', { keyworks: <TexareaValue> })
+              .then( aggregateData => displayData(<TexareaValue>, aggregateData.data) )
+              .catch( error => console.log(error) );
+            */
+                //=> Start coding here...
+                const getFormSubmition = () => {
+                    document.querySelector("#searchForm button").addEventListener("click", function(event) {
+                        let form = document.getElementById("searchForm").elements;
+                        let keyworks = form["keyworks"].value;
+                        if (keyworks.length != 0)
+                        {
+                            asyncFetch('https://trends.dwsapp.io/api/google-trends/aggregate', { keyworks: keyworks })
+                            .then( aggregateData => displayData(keyworks, aggregateData.data))
+                            .catch( error => console.log(error) );
+                        }
+                        else 
+                            alert('TYPE YOUR KEYWORD(S) TO START FETCHING DATA');
+                        event.preventDefault();
+                    }, false);
+                };
+            //
+
+            /*
+            Function to display aggregated data
+            Edit this function to display detched data from the API
+            */
+                const displayData = (keyword, data) => {
+                    /* 
+                    Display the result title
+                    - Select the '#searchTitle' HTML tag
+                    - The tag muste contain this text:
+                      Result for keyword: <keyword>
+                    */
+                    //=> Start coding here...
+                    document.getElementById("searchTitle").innerHTML = "Result for keyword : " + keyword;
+                    //
+
+                    /*
+                    Display interest over time
+                    - Make a loop on 'data.relatedTopicsCollection' to get each item of the collection independently
+                    - For each item over a value of 20
+                        - add the region name in the 'regionsLabel' arrray
+                        - add interest value in the 'regionData' arrray
+                    - After the loop, call the function 'displayBarChart()' with your selected data
+                    */
+                        // Empty arrays to save data
+                        let regionsLabel = [];
+                        let regionData = [];
+
+                        //=> Start coding here...
+
+
+                        //console.log(data.relatedTopicsCollection);
+                        // data.relatedTopicsCollection.forEach(function(item)
+                        // {
+                        //     copie.push(item);
+                        // });
+
+                        // var myTab = data.relatedTopicsCollection.map(function(relatedTopic) {
+                        //     if (relatedTopic > 0)
+                        //     {
+                        //         console.log(relatedTopic);
+                        //         regionsLabel.push(relatedTopic[0]);
+                        //         regionData.push(relatedTopic[1]);
+                        //     }
+                        //     });
+
+                            console.log(data.relatedTopicsCollection);
+                            
+                        
+                        // Uncomment the next line to display bar chart here
+                         //displayBarChart(regionsLabel, regionData);
+                    //
+
+                    /* 
+                    Display all related queries
+                    - Make a loop on 'data.relatedQueriesCollection' to get each item of the collection independently
+                    - For each item add a LI tag in '#relatedQueriesCollection ul'
+                    - The LI tag must be created like this: 
+                      <Query> <b><value></b> <a href="<link>" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    */
+                        // Sort data from largest to smallest
+                        data.relatedQueriesCollection.sort( (a,b) => a - b);
+
+                        //=> Start coding here...
+                        
+                    //
+
+                    /* 
+                    Display all related topics
+                    - Make a loop on 'data.relatedTopicsCollection' to get each item of the collection independently
+                    - For each item add a LI tag in '#relatedTopicsCollection ul'
+                    - The LI tag must be created like this: 
+                      <Topic> <b><value></b> <a href="<link>" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    */
+                        // Sort data from largest to smallest
+                        data.relatedTopicsCollection.sort( (a,b) => a - b);
+
+                        //=> Start coding here...
+                        
+                    //
+
+                    /* 
+                    Remove the 'hidden' class to display result, reset the form and hide the searchBox
+                    !! Don't edit this code unless your are sure of what you do !!
+                    */
+                        document.querySelector('div').classList.remove('hidden');
+                        document.querySelector('form').reset();
+                        document.querySelector('#searchBox').classList.add('hidden');
+                    //
+                };
+            //
+
+            /**
+             * Function to display bar chart
+             * !! Don't edit this code unless your are sure of what you do !!
+             * @param label: Arrray<String> => x axe value
+             * @param data: Array<Number> => y axe value
+            */
+                const displayBarChart = (label, data) => {
+                    // Create a canvas
+                    const myCanvas = document.createElement('canvas'); 
+
+                    // Get canvas context
+                    const ctx = myCanvas.getContext('2d');
+
+                    // Create bar chart in the canvas
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: label,
+                            datasets: [{
+                                label: 'Proportion de recherches',
+                                data: data,
+                                backgroundColor: '#9b4dca'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+
+                    // Add the canvas in the DOM
+                    document.querySelector('#interestByRegionCollection').append(myCanvas);
+                }
+            //
+
+            /**
+             * Function to fetch data
+             * !! Don't edit this code unless your are sure of what you do !!
+             * @param url: String => endpoint of the API
+             * @param option: Object => correct objet for request option
+             * @success
+            */
+                const asyncFetch =  (url, options) => {
+                    return new Promise( async (resolve, reject) => {
+                        // Start async request
+                        const fetchResponse = await fetch( url, {
+                            method: "POST",
+                            headers: [
+                                ["Content-Type", "application/json"]
+                            ],
+                            body: JSON.stringify(options)
+                        });
+
+                        // Check fetch response
+                        if( !fetchResponse.ok ) { return reject({ msg: fetchResponse.statusText, status: fetchResponse.status }) }
+                        else {
+                            
+                            // Convert data
+                            const jsonResponse = await fetchResponse.json();
+                            // Send json response
+                            return resolve(jsonResponse);
+                        }
+                    })
+                };
+            //
+        
+            /* 
+            Start interrface
+            !! Don't edit this code unless your are sure of what you do !!
+            */
+                document.addEventListener('DOMContentLoaded', getFormSubmition() );
+            //
+        </script>
+    </body>
+</html>
