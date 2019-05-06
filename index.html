@@ -105,13 +105,19 @@
                         let regionData = [];
 
                         //=> Start coding here...
-
-
-                            console.log(data.relatedTopicsCollection);
+                        console.log(data.interestByRegionCollection);
+                        data.interestByRegionCollection.map(interestByRegion => {
+                            if (interestByRegion.value > 20)
+                            {
+                                regionsLabel.push(interestByRegion.region);
+                                regionData.push(interestByRegion.value);
+                            }
+                        });
+                        
                             
                         
                         // Uncomment the next line to display bar chart here
-                         //displayBarChart(regionsLabel, regionData);
+                         displayBarChart(regionsLabel, regionData);
                     //
 
                     /* 
