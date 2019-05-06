@@ -105,7 +105,6 @@
                         let regionData = [];
 
                         //=> Start coding here...
-                        console.log(data.interestByRegionCollection);
                         data.interestByRegionCollection.map(interestByRegion => {
                             if (interestByRegion.value > 20)
                             {
@@ -131,6 +130,10 @@
                         data.relatedQueriesCollection.sort( (a,b) => a - b);
 
                         //=> Start coding here...
+                        for (let relatedQuery of data.relatedQueriesCollection)
+                        {
+                            document.querySelector("#relatedQueriesCollection ul").innerHTML += `<li> ${relatedQuery.query} <b> ${relatedQuery.value}</b> <a href="${relatedQuery.link}" target="_blank"><i class="fas fa-external-link-alt"></i></a></li>`;
+                        }
                         
                     //
 
@@ -145,7 +148,19 @@
                         data.relatedTopicsCollection.sort( (a,b) => a - b);
 
                         //=> Start coding here...
+                        for (let relatedTopic of data.relatedTopicsCollection)
+                        {
+                            document.querySelector("#relatedTopicsCollection ul").innerHTML += `<li> ${relatedTopic.topic} <b> ${relatedTopic.value}</b> <a href="${relatedTopic.link}" target="_blank"><i class="fas fa-external-link-alt"></i></a></li>`;
+                        }
                         
+                        // let printList = (myQuerySelector,data,name) =>
+                        // {
+                        //     for (let item of data)
+                        //     {
+                        //         document.querySelector(myQuerySelector).innerHTML += `<li> ${item.name} <b> ${item.value}</b> <a href="${item.link}" target="_blank"><i class="fas fa-external-link-alt"></i></a></li>`;
+                        //     }
+                        // };
+                        // printList("#relatedTopicsCollection ul",data.relatedTopicsCollection,topic);
                     //
 
                     /* 
